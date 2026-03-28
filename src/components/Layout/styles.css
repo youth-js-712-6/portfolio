@@ -1,0 +1,38 @@
+header {
+    width: 100%;
+    padding: 0 15px;
+    position: fixed;
+    top: 0;
+
+    background: rgba(255, 255, 255, .5);
+    border-bottom: 1px solid #ddd;
+    backdrop-filter: blur(5px);
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 50px;
+}
+
+header .container nav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header .container .logo {
+    font-family: 'Old Standard TT', serif;
+}
+
+header .container nav a {
+    color: inherit;
+    text-decoration: none;
+}
+
+main {
+    margin-top: 60px;
+    padding: 0 15px;
+}
