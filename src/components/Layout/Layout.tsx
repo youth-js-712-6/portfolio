@@ -1,3 +1,4 @@
+import { IconBrandGithub, IconBrandLinkedin, IconMail } from '@tabler/icons-react'
 import './styles.css'
 import { NavLink, Outlet } from 'react-router'
 
@@ -32,9 +33,18 @@ const Layout = () => {
         </span>
 
         <div>
-          <a href="https://github.com/pamplona007">Github</a>
-          <a href="https://github.com/pamplona007">LinkedIn</a>
-          <a href="mailto:pamplona.developer@gmail.com">Email</a>
+          <a href="https://github.com/pamplona007">
+            Github
+            <IconBrandGithub /> 
+          </a>
+          <a href="https://github.com/pamplona007">
+            LinkedIn
+            <IconBrandLinkedin />
+          </a>
+          <a href="mailto:pamplona.developer@gmail.com">
+            Email
+            <IconMail />
+          </a>
         </div>
       </footer>
     </>
