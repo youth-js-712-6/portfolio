@@ -13,11 +13,12 @@ const savedTheme = JSON.parse(localStorage.getItem('theme') || '{}')
 const App = () => {
     return (
         <Theme 
-            accentColor="ruby" 
-            radius="full" 
+            accentColor="gold" 
+            radius="none" 
             appearance="dark" 
             {...savedTheme}
         >
+            <ThemePanel hidden />
             <BrowserRouter>
                 <Routes>
                     <Route element={<Layout />}>

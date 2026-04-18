@@ -1,6 +1,6 @@
-import { Button, Card, Flex, Grid, Select, Text, TextArea, TextField, useThemeContext } from "@radix-ui/themes"
+import { Button, Card, Flex, Grid, Select, Text, TextArea, TextField } from "@radix-ui/themes"
 import { IconBrandGithub, IconBrandLinkedin, IconMail } from "@tabler/icons-react"
-import { useEffect } from "react"
+import { useForm } from "react-hook-form";
 
 type SocialCardProps = {
     label: string;
@@ -26,28 +26,48 @@ const SocialCard = ({ label, url, at, icon }: SocialCardProps) => {
 }
 
 const ContactPage = () => {
-    const theme = useThemeContext()
+    const { register, handleSubmit, setValue } = useForm()
 
-    useEffect(() => {
-        localStorage.setItem('theme', JSON.stringify(theme))
-    }, [theme])
+    const onSubmit = async (values: any) => {
+        console.log(values)
+        console.log('Enviando')
+
+        await fetch("https://formsubmit.co/ajax/pamplona.developer@gmail.com", {
+            method: 'post',
+            body: JSON.stringify(values),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        console.log('Enviado')
+    }
 
     return (
         <>
             <h1>Contact</h1>
             <Grid columns={'3fr 2fr'} gap={"5"} className="content">
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <Flex direction={"column"} gap={"3"} className="contact-form">
                         <TextField.Root
-                            name="nome"
                             placeholder="Seu nome"
+                            {...register('name', {
+                                required: true
+                            })}
                         />
                         <TextField.Root
-                            name="email"
                             placeholder="johndoe@email.com"
                             type="email"
+                            {...register('email', {
+                                required: true
+                            })}
                         />
-                        <Select.Root name="assunto" >
+                        <Select.Root 
+                            {...register('subject', {
+                                required: true
+                            })}
+                            onValueChange={(subject) => setValue('subject', subject)}
+                        >
                             <Select.Trigger placeholder="Assunto" />
                             <Select.Content>
                                 <Select.Item value="orcamento">
@@ -64,7 +84,12 @@ const ContactPage = () => {
                                 </Select.Item>
                             </Select.Content>
                         </Select.Root>
-                        <TextArea placeholder="Sobre o que quer conversar?" />
+                        <TextArea 
+                            placeholder="Sobre o que quer conversar?" 
+                            {...register('message', {
+                                required: true
+                            })}
+                        />
                         <Button type="submit">Enviar</Button>
                     </Flex>
                 </form>
